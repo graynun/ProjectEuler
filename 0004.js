@@ -16,7 +16,6 @@ for(var i = 100; i < 1000; i++) {
 	for(var j = i; j < 1000; j++) {
 		if(isPalindrome(i * j)) {
 			if(max < i * j) {
-				console.log(i, j);
 				max = i * j;
 			}
 		}

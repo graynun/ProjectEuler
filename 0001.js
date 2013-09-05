@@ -10,5 +10,4 @@ var ret = function(n) {
 	return sumNProductsToM(3, n) + sumNProductsToM(5, n) - sumNProductsToM(15, n);
 };
 
-console.log(ret(10));
 console.log(ret(1000));
