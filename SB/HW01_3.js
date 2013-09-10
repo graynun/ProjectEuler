@@ -2,7 +2,6 @@ var sumMP = function(maxNum, N){
 	var sum = 0;
 	var remain_j = ((maxNum - maxNum % N)/N) % 10;
 	var max_j = ((maxNum - maxNum % N)/N - remain_j)/10;
-	//max_j = Math.floor(max_j);
 	var temp = 0;
 	for(i = 1; i <= 10; i++){
 		temp += N * i;
