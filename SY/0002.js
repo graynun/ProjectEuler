@@ -1,9 +1,13 @@
-var fib = function(n) {
-	var s5 = Math.sqrt(5),
-		a = (1 + s5) / 2,
-		b = (1 - s5) / 2;
+var N = 4000000;
 
-	return Math.round((Math.pow(a, n + 2) - Math.pow(b, n + 2)) / s5);
+console.time("Problem 2");
+
+var s5 = Math.sqrt(5),
+	a = Math.pow((1 + s5) / 2, 3),
+	b = Math.pow((1 - s5) / 2, 3);
+
+var fib = function(n) {
+	return Math.round((Math.pow(a, n) - Math.pow(b, n)) / s5);
 };
 
 var sum = 0;
@@ -11,10 +15,10 @@ var sum = 0;
 for(var i = 0;; i++) {
 	var f = fib(i);
 
-	if(f >= 4000000) break;
-	if(f % 2 === 1) continue;
+	if(f >= N) break;
 
 	sum += f;
 }
 
 console.log(sum);
+console.timeEnd("Problem 2");
