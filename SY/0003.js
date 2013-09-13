@@ -1,4 +1,4 @@
-var prime = require("./prime"),
+var prime = require("./Prime"),
 	N = 600851475143,
 	sqrtN = Math.sqrt(N),
 	factors = [];

@@ -1,4 +1,4 @@
-var prime = require("./prime"),
+var prime = require("./Prime"),
 	N = 500;
 
 console.time("Problem 12");

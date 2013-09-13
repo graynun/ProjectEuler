@@ -1,4 +1,4 @@
-var prime = require("./prime"),
+var prime = require("./Prime"),
 	primeTable = prime.primeTable.primes;
 
 var sum = 0,
