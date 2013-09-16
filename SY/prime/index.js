@@ -1,16 +1,16 @@
 var fs = require('fs'),
 	path = require('path'),
-	fileName = path.join(__dirname, 'primes.json'),
-	primeTable = JSON.parse(fs.readFileSync(fileName, 'utf8'));
+	primeFile = path.join(__dirname, 'primes.json'),
+	primeTable = JSON.parse(fs.readFileSync(primeFile, 'utf8')),
+	factorFile = path.join(__dirname, 'factors.json'),
+	factorTable = JSON.parse(fs.readFileSync(factorFile, 'utf8'));
 
 exports.primeTable = primeTable;
+exports.factorTable = factorTable;
 
 exports.isPrime = function(n) {
-	if(n % 1000 === 0) console.log(n);
-
 	if(n > primeTable.N) {
-		exports.makePrimeTable(n);
-		primeTable = JSON.parse(fs.readFileSync(fileName, 'utf8'));
+		throw "n is too big";
 	}
 
 	if(primeTable.primes.indexOf(n) !== -1) {
@@ -20,67 +20,25 @@ exports.isPrime = function(n) {
 	}
 };
 
-exports.makePrimeTable = function(n) {
-	var primeTable = JSON.parse(fs.readFileSync(fileName, 'utf8')),
-		ret = {};
-
-	if(primeTable.N >= n) return;
-
-	ret.N = n;
-
-	for(var i = primeTable.primes[primeTable.primes.length - 1] + 1; i <= n; i++) {
-		if(isPrimeByList(i, primeTable.primes)) {
-			primeTable.primes.push(i);
-		}
-	}
-
-	ret.primes = primeTable.primes;
-
-	fs.writeFileSync(fileName, JSON.stringify(ret), 'utf8');
-};
-
-var isPrimeByList = function(n, primes) {
-	var sqrtn = Math.sqrt(n);
-
-	for(var i = 0; i < primes.length && primes[i] <= sqrtn; i++) {
-		var p = primes[i];
-		if(n % p === 0) return false;
-	}
-
-	return true;
-};
-
 exports.factorize = function(n) {
-	exports.makePrimeTable(n);
-
-	var ret = {},
-		primeTable = JSON.parse(fs.readFileSync(fileName, 'utf8')),
-		nowN = n;
-
-	primeTable.primes.forEach(function(val) {
-		var f = exports.factorExp(nowN, val);
-
-		if(f[0] === 0) return;
-
-		ret[val] = f[0];
-		nowN = f[1];
-	});
-
-	return ret;
-};
-
-exports.factorExp = function(n, p) {
-	var nowN = n,
-		cnt = 0;
-
-	for(;;) {
-		if(nowN % p === 0) {
-			cnt++;
-			nowN /= p;
-		} else {
-			break;
-		}
+	if(n > factorTable.N) {
+		throw "n is too big";
 	}
 
-	return [cnt, nowN];
+	return factorTable.factors[n];
+};
+
+exports.numDivisors = function(n) {
+	if(n > factorTable.N) {
+		throw "n is too big";
+	}
+
+	var prod = 1,
+		fct = exports.factorize(n);
+
+	for(p in fct) {
+		prod *= (fct[p] + 1);
+	}
+
+	return prod;
 };

@@ -1,3 +1,3 @@
 var prime = require('./prime');
 
-prime.makePrimeTable(5000000);
+prime.makePrimeTable(10000000);
