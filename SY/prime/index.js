@@ -42,3 +42,18 @@ exports.numDivisors = function(n) {
 
 	return prod;
 };
+
+exports.sumDivisors = function(n) {
+	if(n > factorTable.N) {
+		throw "n is too big";
+	}
+
+	var prod = 1,
+		fct = exports.factorize(n);
+
+	for(p in fct) {
+		prod *= (Math.pow(p, fct[p] + 1) - 1) / (p - 1);
+	}
+
+	return prod;
+};
