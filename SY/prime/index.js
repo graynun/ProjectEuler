@@ -13,6 +13,8 @@ exports.isPrime = function(n) {
 		throw "n is too big";
 	}
 
+	if(n <= 1) return false;
+
 	if(primeTable.primes.indexOf(n) !== -1) {
 		return true;
 	} else {
