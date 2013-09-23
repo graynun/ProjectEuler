@@ -9,9 +9,11 @@ class Calc
 		@palindromes = []
 	end
 
-	def make
-		(100..999).each do |i|
-			(100..999).each do |j|
+	def make n
+		min = 10**(n-1)
+		max = 10**(n) - 1
+		(min..max).each do |i|
+			(min..max).each do |j|
 				add_palindrome(i*j)
 			end
 		end
