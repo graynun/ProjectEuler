@@ -13,6 +13,8 @@ exports.isPrime = function(n) {
 		throw "n is too big";
 	}
 
+	if(n <= 1) return false;
+
 	if(primeTable.primes.indexOf(n) !== -1) {
 		return true;
 	} else {
@@ -38,6 +40,21 @@ exports.numDivisors = function(n) {
 
 	for(p in fct) {
 		prod *= (fct[p] + 1);
+	}
+
+	return prod;
+};
+
+exports.sumDivisors = function(n) {
+	if(n > factorTable.N) {
+		throw "n is too big";
+	}
+
+	var prod = 1,
+		fct = exports.factorize(n);
+
+	for(p in fct) {
+		prod *= (Math.pow(p, fct[p] + 1) - 1) / (p - 1);
 	}
 
 	return prod;

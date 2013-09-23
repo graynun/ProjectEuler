@@ -86,6 +86,16 @@ module.exports.BigNumber.minus = function(n1, n2) {
 	return new BigNumber(ret);
 };
 
+module.exports.BigNumber.multiply = function(n, m) {
+	var sum = new BigNumber([0]);
+
+	for(var i = 0; i < m; i++) {
+		sum = BigNumber.plus(sum, n);
+	}
+
+	return sum;
+};
+
 
 /* Examples
 var BigNumber = require('./BigNumber').BigNumber;

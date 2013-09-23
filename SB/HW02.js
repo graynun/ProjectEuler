@@ -32,4 +32,3 @@ for(var i = 2; i < 20; i++){
 	console.log('방법1 : '+PB_sum_3n_2(i));
 	console.log('방법2 : '+aaa(i));
 }
-
