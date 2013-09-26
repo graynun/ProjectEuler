@@ -1,15 +1,9 @@
-var arr = [2];
-var arr2 = [];
+var fs = require('fs'),
+	path = require('path'),
+	primeFile = path.join(__dirname, 'primes.json'),
+	primeTable = JSON.parse(fs.readFileSync(primeFile, 'utf8'));
 
-var MkArr = function(N){
-	for(var i = 3 ; i <= N ; i++){
-		var sz = arr.length;
-		for(var j = 0; j < sz; j++){
-			if(i % arr[j] == 0)	break;
-			if(j == sz-1)	arr.push(i);
-		}
-	}
-}
+var arr = primeTable.primes;
 
 var SearchArr = function(N){
 	var temp1 = [1];
@@ -26,11 +20,6 @@ var SearchArr = function(N){
 	}
 	return [temp1, temp2];
 }
-
-//MkArr(100);
-//console.log(arr);
-MkArr(Math.floor(Math.sqrt(600851475143)));
-console.log('개수 : '+arr.length);
 
 var x = SearchArr(600851475143);
 var y = SearchArr(x[1][1]);
