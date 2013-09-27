@@ -17,5 +17,5 @@ var MkArr = function(N){
 	}
 }
 
-MkArr(Math.floor(Math.sqrt(600851475143)));
+MkArr(2000000);
 fs.writeFileSync(primeFile, JSON.stringify(primeTable), 'utf8');
