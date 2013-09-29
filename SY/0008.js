@@ -17,21 +17,24 @@ var N = "73167176531330624919225119674426574742355349194934" +
 		"07198403850962455444362981230987879927244284909188" +
 		"84580156166097919133875499200524063689912560717606" +
 		"05886116467109405077541002256983155200055935729725" +
-		"71636269561882670428252483600823257530420752963450";
+		"71636269561882670428252483600823257530420752963450",
+	cnt = 0;
 
 var calcProd = function(cursor) {
+	cnt++;
 	return parseInt(N[cursor - 4]) * parseInt(N[cursor - 3]) * parseInt(N[cursor - 2]) * parseInt(N[cursor - 1]) * parseInt(N[cursor]);
 };
 
 var first = parseInt(N[0]),
 	prod = calcProd(4),
 	maxProd = prod,
-	cursor = 5;
+	cursor = 5,
+	pow94 = Math.pow(9, 4);
 
 for(;;) {
 	if(cursor >= N.length) break;
 
-	if(parseInt(N[cursor]) === 0) {
+	if(parseInt(N[cursor]) === 0 || parseInt(N[cursor]) * pow94 < maxProd) {
 		cursor += 5;
 		continue;
 	}
@@ -45,3 +48,4 @@ for(;;) {
 }
 
 console.log(maxProd);
+console.log("Count:", cnt);
