@@ -23,8 +23,6 @@ class Calc
 				pow =  result[:pow]
 				divisors[base] = 1 unless divisors[base]
 				divisors[base] = pow if divisors[base] < pow
-					
-
 			end
 		end
 		

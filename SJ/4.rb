@@ -32,4 +32,4 @@ class Calc
 	end
 end
 
-p Calc.new.make.max
+p Calc.new.make(3).max
