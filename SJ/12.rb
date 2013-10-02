@@ -20,15 +20,19 @@
 class Calc
 	def find
 		divisors_count = 0
-		i = 1
+		i = 500
 		arr = {}
 		while divisors_count < 500 do
-			triangular = (1..i).inject(:+)
+			triangular = sum(i)
 			divisors_count = divisors_count(triangular)
 			i += 1
 			arr["#{triangular}"] =  divisors_count
 		end
 		arr
+	end
+
+	def sum number
+		number * (number+1) / 2
 	end
 
 	def divisors_count number
