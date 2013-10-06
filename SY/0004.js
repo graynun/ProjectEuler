@@ -12,10 +12,12 @@ var isPalindrome = function(n) {
 	return true;
 }
 
-for(var i = 100; i < 1000; i++) {
-	for(var j = i; j < 1000; j++) {
-		if(isPalindrome(i * j)) {
-			if(max < i * j) {
+for(var i = 999; i >= 100; i--) {
+	for(var j = 999; j >= i; j--) {
+		if(i % 11 !== 0 && j % 11 !== 0) continue;
+
+		if(max < i * j) {
+			if(isPalindrome(i * j)) {
 				max = i * j;
 			}
 		}
