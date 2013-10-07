@@ -1,3 +1,22 @@
+var sumBigIntArr = function(A, B){
+	var sz = Math.max(A.length, B.length);
+	var arrTemp = [0];
+	var C = [];
+	var recentVal = 0;
+	for(var i = 0; i < sz; i++){
+		if(A[i] == null)	tempA = 0;
+		else				tempA = parseInt(A[i]);
+		if(B[i] == null)	tempB = 0;
+		else				tempB = parseInt(B[i]);
+
+		recentVal = tempA + tempB + arrTemp[i];
+		C[i] = recentVal % 10;
+		arrTemp[i+1] = (recentVal - C[i])/10;
+	}
+	if(arrTemp[sz] != null && arrTemp[sz] != 0)	C.push(arrTemp[sz]);
+	return C;
+}
+
 var n = [];
 n[0] = '37107287533902102798797998220837590246510135740250';
 n[1] = '46376937677490009712648124896970078050417018260538';
@@ -100,21 +119,15 @@ n[97] = '72107838435069186155435662884062257473692284509516';
 n[98] = '20849603980134001723930671666823555245252804609722';
 n[99] = '53503534226472524250874054075591789781264330331690';
 
+var bigNs = [];
+var sum = [];
 for(var i = 0; i < 100; i++){
-	n[i].split("");
-	console.log(n[i][0]);
+	bigNs[i] = n[i].split("");
+	bigNs[i].reverse();
+	if(i == 0) sum = bigNs[0];
+	else	sum = sumBigIntArr(sum, bigNs[i]);
 }
 
-var sumBigIntArr = function(A, B){
-	var sz = Math.max(A.length, B.length);
-	var arrTemp = [0];
-	var C = [];
-	var recentVal = 0;
-	for(var i = 0; i <= sz; i++){
-		recentVal = A[i] + B[i] + arrTemp[i];
-		C[i] = recentVal % 10;
-		arrTemp[i+1] = (recentVal - C[i])/10;
-	}
-	return C;
-}
-
+console.log(bigNs[99]);
+console.log(sum.reverse().join());
+//console.log(sumBigIntArr([2,3],[8,6]));
