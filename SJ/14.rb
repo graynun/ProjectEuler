@@ -55,14 +55,18 @@ end
 class Calc
 	def initialize _end
 		@max_count = 0
+		@max_i = 0
 		@range = (1..._end)
 	end	
 
 	def start
 		@range.reverse_each do |i|
-			@max_count = [find(i), @max_count].max
+			if @max_count < (value = find(i))
+				@max_count = value
+				@max_i = i
+			end
 		end
-		@max_count
+		@max_i	
 	end
 
 	def find number
