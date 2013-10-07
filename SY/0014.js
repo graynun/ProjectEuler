@@ -1,7 +1,10 @@
-var collatz = {1: 1},
+console.time('0014');
+
+var collatz = {1: 1},//[0, 1],
 	N = 1000000;
 
 var getCollatz = function(n) {
+	//if(collatz[n] != null) {
 	if(collatz.hasOwnProperty(n)) {
 		return collatz[n];
 	}
@@ -28,5 +31,6 @@ for(var i = 1; i < N; i++) {
 		max.len = c;
 	}
 }
-
 console.log(max);
+
+console.timeEnd('0014');
