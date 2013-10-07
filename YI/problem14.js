@@ -15,7 +15,6 @@ var collatzSeq = function(num){
 	count ++;
 	}
 
-//	console.log(count);
 }
 
 var decideMax = function(num, count){
@@ -31,5 +30,7 @@ var looping = function(end) {
 	}
 }
 
+console.time("oops");
 looping(1000000);
 console.log(maxVal);
+console.timeEnd("oops");
