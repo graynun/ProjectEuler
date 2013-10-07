@@ -3,17 +3,17 @@ var hailstoneLog = [];
 var findHSN = function(N){
 	var HSN = 0;
 	var oriN = N;
-	while(N != 1){
+	if(N != 1){
 		if(hailstoneLog[N] != null){
 			HSN += hailstoneLog[N];
-			break;
-		}
-		if(N % 2 == 0){
-			N /= 2;
 		}else{
-			N = 3 * N + 1;
+			if(N % 2 == 0){
+				N /= 2;
+			}else{
+				N = 3 * N + 1;
+			}
+			HSN = findHSN(N) + 1;	
 		}
-		HSN++;
 	}
 	hailstoneLog[oriN] = HSN;
 	return HSN;
