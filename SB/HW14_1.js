@@ -1,3 +1,4 @@
+console.time("oops");
 var hailstoneLog = [];
 
 var findHSN = function(N){
@@ -35,6 +36,5 @@ for(var i = 1; i < 1000000; i++){
 	}
 }
 
-console.time("oops");
 console.log(bigHSN);
 console.timeEnd("oops");
