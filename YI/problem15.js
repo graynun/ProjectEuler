@@ -15,5 +15,5 @@ var calculate = function(x, y, n){
 
 
 console.time("oops");
-console.log(calculate(20, 20, 40));
+zconsole.log(calculate(20, 20, 40));
 console.timeEnd("oops");
