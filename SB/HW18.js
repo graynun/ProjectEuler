@@ -16,26 +16,24 @@ var triNs = [
 [04, 62, 98, 27, 23, 09, 70, 98, 73, 93, 38, 53, 60, 04, 23]];
 
 var findMaxSum = function(triArr){
-	var sz_out = triArr.length;
-	var sz_in = triArr[sz_out-1].length;
-	var sums = triArr[sz_out-1];
-	var temp;
-	var	tempKey;
-	for(var j = 0; j < sz_in; j++){
-		tempKey = j;
-		for(var i = sz_out - 2; i >= 0; i--){
-			if(triArr[i][tempKey-1] < triArr[i][tempKey] || triArr[i][tempKey-1] == null){
-				temp = triArr[i][tempKey];
+	var sums = [];
+	for(var i = 0; i < triArr.length; i++){
+		sums[i] = [];
+		for(var j = 0; j < triArr[i].length; j++){
+			if(i == 0){
+				sums[0][0] = triArr[0][0];
 			}else{
-				temp = triArr[i][tempKey-1];
-				tempKey--;
+				if(sums[i-1][j-1] < sums[i-1][j] || sums[i-1][j-1] == null){
+					sums[i][j] = sums[i-1][j] + triArr[i][j];
+				}else{
+					sums[i][j] = sums[i-1][j-1] + triArr[i][j];
+				}
 			}
-			sums[j] += temp;
 		}
-		console.log(sums);
 	}
-	sums.sort(function(a,b){return b-a});
-	return sums[0];
+	var bottomLine = sums[sums.length - 1];
+	bottomLine.sort(function(a,b){return b-a});
+	return bottomLine[0];
 }
 
 console.log(findMaxSum(triNs));
