@@ -4,7 +4,7 @@ var chooseOverHalf = function(n) {
 
 	for(var i = h; i >= 1; i--) {
 		prod *= i + h;
-		prod /= i;
+		prod /= h + 1 - i;
 	}
 
 	return Math.round(prod);
