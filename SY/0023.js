@@ -3,6 +3,7 @@ var Prime = require("./Prime"),
 	N = 28213,
 	result = [false];
 
+console.time('a');
 var isAbundant = function(n) {
 	return (Prime.sumDivisors(n) > n * 2);
 };
@@ -26,3 +27,4 @@ console.log(result.reduce(function(prev, val, i) {
 		return prev;
 	}
 }, 0));
+console.timeEnd('a');
