@@ -10,7 +10,7 @@ var findDivisor = function(num){
 		}
 	}
 
-	divisorArr = divisorArr.sort(function(a,b){return a-b});
+	// divisorArr = divisorArr.sort(function(a,b){return a-b});
 	
 	return divisorArr;
 }
@@ -35,7 +35,7 @@ var findAmicable = function(num){
 		if(i == comSum && i != sum){
 
 			var arr1 = [i, sum];
-			arr1 = arr1.sort(function(a,b){return a-b});
+			// arr1 = arr1.sort(function(a,b){return a-b});
 			amiArr.push(arr1);	
 		}
 	}
