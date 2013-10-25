@@ -1,11 +1,3 @@
-var fs = require('fs'),
-	path = require('path'),
-	primeFile = path.join(__dirname, 'primes.json'),
-	primeTable = JSON.parse(fs.readFileSync(primeFile, 'utf8'));
-var primes = primeTable.primes;
-
-var sumOfDivisors = [];
-
 var getDivisors = function(N){
 	var divisors = [];
 	var max = Math.sqrt(N);
@@ -21,6 +13,7 @@ var getDivisors = function(N){
 	return divisors;
 }
 
+var sumOfDivisors = [];
 for(var i = 1; i <= 10000; i++){
 	var divisors = getDivisors(i);
 	var sz = divisors.length;
