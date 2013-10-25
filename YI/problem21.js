@@ -3,7 +3,8 @@ var amiArr = [];
 var findDivisor = function(num){
 	var sqrt = Math.floor(Math.sqrt(num));
 	var divisorArr = [];
-	for(var i = num-1; i>sqrt; i--){
+//	for(var i = num-1; i>sqrt; i--){
+	for(var i = 1; i<=sqrt; i++){
 		if(num % i == 0){
 			divisorArr.push(i);
 			divisorArr.push(num/i);
@@ -11,7 +12,7 @@ var findDivisor = function(num){
 	}
 
 	// divisorArr = divisorArr.sort(function(a,b){return a-b});
-	
+
 	return divisorArr;
 }
 

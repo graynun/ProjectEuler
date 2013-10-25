@@ -1,7 +1,7 @@
 var factors = require('../SY/prime/factors').factors,
 	limit = 10000,
 	arr = [];
-
+console.time('a');
 var Amicable = function(n) {
 	var f = factors[n];
 
@@ -26,7 +26,7 @@ for ( var i = 10000; i > 1; i--) {
 	}
 }
 
-console.log(arr);
+//console.log(arr);
 
 var sum = 0;
 
@@ -40,4 +40,4 @@ console.log(sum);
 
 
 
-
+console.timeEnd('a');
