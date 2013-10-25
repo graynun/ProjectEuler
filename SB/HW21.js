@@ -33,13 +33,10 @@ for(var i = 1; i <= 10000; i++){
 
 var sumFriends = 0;
 for(var i = 1; i <= 10000; i++){
-	var temp = sumOfDivisors.slice(0);
-	temp.splice(i,1);
-	if(temp.indexOf(sumOfDivisors[i]) != -1){
+	var j = sumOfDivisors[i];
+	if(sumOfDivisors[j] == i && i != j){
 		sumFriends += i;
-	}
-	if(i == 220 || i == 284){
-		console.log('있는데');
+		sumFriends += j;
 	}
 }
-console.log(sumFriends);
+console.log(sumFriends/2);
