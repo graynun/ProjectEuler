@@ -1,6 +1,7 @@
 var string = '3+1+2*4-3/5';
 var string1 = '13+(5+2)*6';
 var string2 = '3+((1+2)+(7+8)*3)*2';
+var string3 = '2+3+1-5';
 
 var mkArr = function(string) {
 	var arr =[];
@@ -26,12 +27,50 @@ var mkArr = function(string) {
 }
 
 var mkStack = function(arr) {
-	var stackT = [];
+	var OPbox = null;
+	var stackN = [];
 	var stackR = [];
 	var priority = [['+', '-'], ['*', '/']];
-	priority.length;
-	arr.length;
-	/* 스택으로 옮기는 법을 잘 모르겠어용 */
+	for (var i = 0; i < priority.length; i++) {
+		while (arr.length != 0) {
+			var temp = arr.pop();
+			if (priority[i].indexOf(temp) != -1) {
+				OPbox = temp;
+			} else {
+				stackN.push(temp);
+				if ( OPbox != null ) {
+					while (stackN.length != 0) {
+						stackR.push(stackN.pop());
+					}
+					stackR.push(OPbox);
+					OPbox = null;
+				}
+			}
+		}
+	}
+	return stackR;
+}
+
+var mkStackOnlyP = function(arr) {
+	var OPbox = null;
+	var NumBox = null;
+	var stackR = [];
+	while (arr.length != 0) {
+		var temp = arr.pop();
+		if ( typeof temp != 'number' ) {
+			stackR.push(temp);
+			if ( NumBox != null) {
+				stackR.push(NumBox);
+				NumBox = null;
+			}
+		} else {
+			NumBox = temp;
+		}
+	}
+	if ( NumBox != null ) {
+		stackR.push(NumBox);
+	}
+	return stackR;
 }
 
 var calStack = function(stack) {
@@ -65,9 +104,15 @@ var evaluate = function(string) {
 	return calStack(mkStack(mkArr(string)));
 }
 
-console.log(mkArr(string));
+console.log(mkArr(string), 'mkArr동작 확인');
 
 var stack1 = [3,1,'+',2,4,'*','+',3,5,'/','-'];
 stack1.reverse();
+console.log(calStack(stack1), 'calStack동작 확인');
 
-console.log(calStack(stack1));
+console.log(mkArr(string3));
+console.log(mkStackOnlyP(mkArr(string3)));
+console.log(calStack(mkStackOnlyP(mkArr(string3))), '덧셈 뺄셈 연산자에 대해서만 구현');
+
+console.log(mkArr(string));
+console.log(mkStack(mkArr(string)), '여기서 막힘');
