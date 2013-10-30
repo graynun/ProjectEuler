@@ -1,4 +1,4 @@
-var a = "3*(8+4*2)-6";
+var a = "5-((7+5)*4-2)*6+(5*2+4)";
 
 
 var evaluate = function(a){
@@ -54,6 +54,10 @@ var transToRPN = function(arr){
 			RPNArr.push(-parseInt(arr[cursor+1]));
 			PMArr += 1;
 			cursor +=1;
+			if(cursor >= cursorEnd-1){
+				for(var i=0; i<PMArr;i++)
+				RPNArr.push("+");
+			}
 		}else if(arr[cursor] == "+"){
 			PMArr += 1;
 		}else if((arr[cursor] == "*" || arr[cursor] == "/")){
