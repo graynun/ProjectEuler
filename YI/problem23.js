@@ -16,7 +16,6 @@ var divideNum = function(num){
 	return sum - num;
 }
 
-
 var decidePerfect = function(num) {
 	var sum = divideNum(num);
 
@@ -29,8 +28,6 @@ var decidePerfect = function(num) {
 	}
 
 }
-
-
 
 var decideResult = function(num) {
 	
