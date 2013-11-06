@@ -44,7 +44,7 @@ var decideResult = function(num) {
 			var a = i - arrA[j];
 
 			if(arrA.indexOf(a) == -1){
-				break;
+				continue;
 			}else{
 				// console.log("succeed"+ a+" , "+arrA[j]+" , "+i);
 				result.push(i);
@@ -73,7 +73,7 @@ var findResult = function(num){
 
 
 
-
+console.time('a');
 for(var i =1; i<28123;i++){
 	decidePerfect(i);
 }
@@ -83,5 +83,5 @@ decideResult(28123);
 console.log(result.length);
 
 console.log(findResult(28123));
-
+console.timeEnd('a');
 
