@@ -41,7 +41,7 @@ var decideResult = function(num) {
 			var a = i - arrA[j];
 
 			if(arrA.indexOf(a) == -1){
-				break;
+				continue;
 			}else{
 				// console.log("succeed"+ a+" , "+arrA[j]+" , "+i);
 				result.push(i);
@@ -57,7 +57,7 @@ var decideResult = function(num) {
 var findResult = function(num){
 	var sum = 0;
 
-	for(var i=1;i<=num;i++){
+	for(var i=1;i<num;i++){
 		if(result.indexOf(i) == -1){
 			sum += i;
 		}
