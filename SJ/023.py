@@ -55,7 +55,6 @@ class Calc:
 
 	def find(self):
 		for i in range(1, self.max+1):
-			print i
 			if not self.is_perfect_number(i):
 				self.perfect_numbers.append(i)
 
