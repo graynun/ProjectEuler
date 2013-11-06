@@ -9,7 +9,6 @@ class Calculater
 	def change_to_polish
 		stack = []
 		formulars = []
-		cursor = 0
 		
 		while @base.length > 0
 			i = @base.first
@@ -22,7 +21,6 @@ class Calculater
 				number = @base.shift
 				stack.push(number, formular)
 			elsif i.match(/\(/) # (
-				cursor += 1
 				@base.shift		
 			elsif i.match(/\)/) # )
 				@base.shift		
@@ -34,11 +32,8 @@ class Calculater
 
 	end
 
-	def calculate
-
-	end	
-
 end
 
 # Calculater.new("3+5*2+6").change_to_polish
 Calculater.new("(3+(5+2))*6").change_to_polish
+Calculater.new("((3+5)+2)*6").change_to_polish
