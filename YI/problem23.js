@@ -70,7 +70,7 @@ var findResult = function(num){
 
 
 
-
+console.time('a');
 for(var i =1; i<28123;i++){
 	decidePerfect(i);
 }
@@ -80,5 +80,5 @@ decideResult(28123);
 console.log(result.length);
 
 console.log(findResult(28123));
-
+console.timeEnd('a');
 
