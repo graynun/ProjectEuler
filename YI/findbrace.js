@@ -1,14 +1,28 @@
-var a = "7*(4+";
+var a = "1+4*(3-2)*9";
+var braceLoc = [];
 
 
-var evaluate = function(a){
-	var arr = stringToArr(a);
-	console.log(a);
-	var b = transToRPN(arr);
-	console.log(b);
-	var c = calculate(b);
-	return c;
-}
+var initialize = function(a) {
+	var array = stringToArr(a);
+	var braceLoc = findBrace(array);
+
+	if(braceLoc.length != 0){
+		for(var i = 0;i<braceLoc.length;i++){
+			var braceStr = array.splice(braceLoc[i][0]+1, braceLoc[i][2]);
+			braceStr.splice(-1,1);
+			var RPNArr = transToRPN(braceStr);
+			console.log(braceStr);
+			console.log(array);
+			console.log(RPNArr);
+			// var result = calculate(RPNArr);
+			// array[braceLoc[i][0]] = result;
+			break;
+		}
+	}
+
+
+};
+
 
 
 var stringToArr = function(a){
@@ -16,33 +30,7 @@ var stringToArr = function(a){
 	return transArr;
 }
 
-var searchBraket = function(arr){
-	var cursor = 0;
-	var cursorEnd = arr.length;
-
-	do {
-		if(arr[cursor] == "("){
-			for(var i = cursor;i<arr.length;i++){
-				if(arr[i] == ")"){
-					var startInd = cursor+1;
-					var endInd = i;
-					break;
-				}
-			}
-			
-		var newArr = arr.slice(startInd, endInd);
-		arr.splice(startInd, endInd - startInd+1);
-		arr[cursor] = calculate(transToRPN(newArr)).toString();
-		}
-		cursor++;		
-	}while(cursor < cursorEnd);
-
-	return arr;
-}
-
 var findBrace = function(arr){
-	var braceLoc = [];
-
 	for(var i=0; i<arr.length; i++){
 		if(arr[i] == "("){
 			braceLoc.push([i, -Infinity]);
@@ -55,7 +43,9 @@ var findBrace = function(arr){
 				}
 			}
 		}
-	}
+	}	
+
+	braceLoc.sort(function(a,b){return a[a.length-1] - b[b.length-1];});
 
 	return braceLoc;
 }
@@ -63,8 +53,6 @@ var findBrace = function(arr){
 var transToRPN = function(arr){
 	var RPNArr = [];
 	var PMArr = 0;
-
-	var arr = searchBraket(arr);
 
 	var cursor = 0;
 	var cursorEnd = arr.length;
@@ -101,7 +89,6 @@ var transToRPN = function(arr){
 	return RPNArr;
 }
 
-
 var calculate = function(arr){
 	var cursor = 0;
 	var cursorEnd = arr.length;
@@ -130,4 +117,5 @@ var calculate = function(arr){
 }
 
 
-console.log(evaluate(a));
+console.log(calculate(transToRPN(stringToArr(a))));
+console.log(braceLoc);

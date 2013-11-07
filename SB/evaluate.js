@@ -47,8 +47,7 @@ node.prototype.add = function(element) {
 	}
 
 	switch (this.isUpper(that)) {
-		case 0 : //경우에따라 ~_~
-		console.log(0);
+		case 'same' : console.log('same', that, this); console.log('***********');//경우에따라 ~_~
 		if (this.left == null || this.right == null) {
 			if (this.left == null) {
 				this.left = that;
@@ -58,64 +57,53 @@ node.prototype.add = function(element) {
 			return this;
 		}
 
-		case 1 : //위에 node추가
-		console.log(1);
+		case 'up' : console.log('up', that, this);  console.log('***********');//위에 node추가
 		that.add(this);
 		return that;
 
-		case -2 : //아래추가
-		console.log(-2);
+		case 'that(down' : console.log('that(down', that, this);  console.log('***********');
 		this.flag = true;
 
-		case -1 : //아래 node추가
-		console.log(-1);
-		if (this.flag) {
-			if (this.right != null) {
-				this.right.add(that);
-			} else if (this.left != null) {
-				this.left.add(that);
-			} else {
-				this.left = that;
-			}
+		case 'down' : console.log('down', that, this); console.log('***********'); //아래 node추가
+		if (this.left == null) {
+			this.left = that;
+		} else if (this.right == null) {
+			this.right = that;
 		} else {
-			if (this.left == null) {
-				this.left = that;
-			} else if (this.right == null) {
-				this.right = that;
+			if (typeof that.element == 'number' || this.flag) {
+				this.right.add(that);
 			} else {
-				if (typeof that.element == 'number') {
-					this.right.add(that);
-				} else {
-					that.add(this.right);
-					this.right = that;	
-				}
-			}	
+				that.add(this.right);
+				this.right = that;	
+			}
 		}
 		return this;
 
-		case -3 : //하는일 없음
+		case 'this(translate' : console.log('this(translate', that, this);  console.log('***********');//아래추가
+		if (this.flag) {
+			if (this.right.element == '(') {
+				this.right.add(that);
+			} else {
+				this.left.add(that);
+			}
+		} else {
+			this.element = that.element;
+		}
+		return this;
+
+		case ')' : console.log(')', that, this);  console.log('***********');//하는일 없음
 		return this;
 	}
 }
-/* 
-		console.log(this);
-		console.log(that);
-		if (this.flag) {
-			this.right.add(that);
-			return this;
-		} else if ( this.element == '(' && typeof that.element != 'number' && that.element != '(') {
-			this.element = that.element;
-		}
-		*/
 node.prototype.isUpper = function(that) {
 	if ( typeof this.element == 'number' ) {
-		return 1;
+		return 'up';
 	} else {
 		if ( typeof that.element == 'number') {
-			return -1;
+			return 'down';
 		}
 
-		var priority = [['('], ['+', '-'], ['*', '/']];
+		var priority = [['+', '-'], ['*', '/'], ['(']];
 		var thisPriority = -1;
 		var thatPriority = -1;
 		for (var i = 0; i < priority.length; i++) {
@@ -125,18 +113,32 @@ node.prototype.isUpper = function(that) {
 				thatPriority = i;
 		}
 		
-		if ( that.element == '(' ) {
-			return -2;
-		} else if ( that.element == ')') {
-			return -3;
+		if ( that.element == ')') {
+			return ')';
+		}
+
+		if ( this.flag ) {
+			return 'down';
 		}
 
 		if ( thisPriority > thatPriority ) {
-			return 1;
+			if ( this.element == '(') {
+				return 'this(translate';
+			} else {
+				return 'up';	
+			}
 		} else if ( thisPriority == thatPriority ) {
-			return 0;
+			if ( that.element == '(' ) {
+				return 'that(down';
+			} else {
+				return 'same';
+			}
 		} else {
-			return -1;
+			if ( that.element == '(' ) {
+				return 'that(down';
+			} else {
+				return 'down';
+			}
 		}
 	}
 }
@@ -216,7 +218,7 @@ var calStack = function(stack) {
 }
 
 var evaluate = function(string) {
-	return calStack(mkStack(mkArr(string)));
+	return calStack(mkTree(mkArr(string)).mkStack());
 }
 /*
 console.log(mkArr(string), 'mkArr동작 확인');
@@ -229,6 +231,12 @@ console.log(mkArr(string3));
 console.log(mkStackOnlyP(mkArr(string3)));
 console.log(calStack(mkStackOnlyP(mkArr(string3))), '덧셈 뺄셈 연산자에 대해서만 구현');
 */
-var myTree = mkTree(mkArr(string));
+var myTree = mkTree(mkArr(string1));
+console.log(string1);
+console.log(myTree);
+console.log(myTree.mkStack());
+console.log('===========================');
+var myTree = mkTree(mkArr(string2));
+console.log(string2);
 console.log(myTree);
 console.log(myTree.mkStack());

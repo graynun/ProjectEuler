@@ -16,7 +16,6 @@ var divideNum = function(num){
 	return sum - num;
 }
 
-
 var decidePerfect = function(num) {
 	var sum = divideNum(num);
 
@@ -29,8 +28,6 @@ var decidePerfect = function(num) {
 	}
 
 }
-
-
 
 var decideResult = function(num) {
 	
@@ -73,7 +70,7 @@ var findResult = function(num){
 
 
 
-
+console.time('a');
 for(var i =1; i<28123;i++){
 	decidePerfect(i);
 }
@@ -83,5 +80,5 @@ decideResult(28123);
 console.log(result.length);
 
 console.log(findResult(28123));
-
+console.timeEnd('a');
 
