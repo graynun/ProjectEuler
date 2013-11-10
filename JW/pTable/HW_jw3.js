@@ -3,7 +3,11 @@ var fs = require('fs'),
 	primeNumber = path.join(__dirname, 'primes.json'),
 	primeTable = {};
 
+<<<<<<< HEAD
 primeTable.limit = 10000000;
+=======
+primeTable.limit = 10000;
+>>>>>>> f81cb056a942e46d4e5bdf6afe73adc06051dad1
 primeTable.primes = [];
 
 exports.prime = function(n) {

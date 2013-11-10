@@ -51,6 +51,14 @@ var transArr = function(arr){
 
 
 
+<<<<<<< HEAD
 separateNum(numArr);
 calculateNum(splitArr);
 console.log(transArr(result));
+=======
+console.time("oops");
+separateNum(numArr);
+calculateNum(splitArr);
+console.log(transArr(result));
+console.timeEnd("oops");
+>>>>>>> f81cb056a942e46d4e5bdf6afe73adc06051dad1
