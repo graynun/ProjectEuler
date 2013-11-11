@@ -37,8 +37,12 @@ for(var i = 0; i <= factMax; i++) {
 	numbers.push(i);
 }
 
+console.log(numbers);
+
 var result = "",
 	arr = baseByFact(N - 1);
+
+console.log(arr);
 
 arr.forEach(function(val) {
 	result += numbers[val];

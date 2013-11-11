@@ -1,4 +1,4 @@
-//var arr = ['0', '1', '2'];
+// var arr = ['0', '1', '2', '3'];
 var arr = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 
 var swap = function(i, j) {
@@ -27,6 +27,7 @@ var Lexico = function(arr) {
 		}
 
 		swap(i - 1, j - 1);
+
 		i++;
 
 		while(i < k) {
@@ -45,5 +46,6 @@ var Lexico = function(arr) {
 	console.log(lexico);
 };
 
+console.time('a');
 Lexico(arr);
-
+console.timeEnd('a');
